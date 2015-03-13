@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
+    version="2.1">
+	<managed-bean>
+	  <managed-bean-name>InputMCQBackingBean</managed-bean-name>
+	  <managed-bean-class>com.app.ui.backingbean.InputMCQBackingBean</managed-bean-class>
+	  <managed-bean-scope>request</managed-bean-scope>
+     </managed-bean>
+     <managed-bean>
+	  <managed-bean-name>AnswerMCQBackingBean</managed-bean-name>
+	  <managed-bean-class>com.app.ui.backingbean.AnswerMCQBackingBean</managed-bean-class>
+	  <managed-bean-scope>view</managed-bean-scope>
+     </managed-bean>
+     
+     <navigation-rule>
+    	<from-view-id>/*</from-view-id>
+    	<navigation-case>
+        	<from-outcome>nextOrPrevious</from-outcome>
+        	<to-view-id>AnswerMCQ.xhtml</to-view-id>
+    	</navigation-case>
+	</navigation-rule>
+</faces-config>

@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:icecore="http://www.icefaces.org/icefaces/core"
+        xmlns:ace="http://www.icefaces.org/icefaces/components"
+        xmlns:ice="http://www.icesoft.com/icefaces/component">
+    <h:head>
+        <title>InputMCQ</title>
+        <ice:outputStyle href="./xmlhttp/css/rime/rime.css" />
+    </h:head>
+    <h:body>
+        <h:form id="textAreaEntryForm">
+           	 <ace:panel id="inputPanel">
+                <h:panelGrid id="inputGrid" columns="1" width="100%" >
+                  <h:outputText value ="#{AnswerMCQBackingBean.quesList[AnswerMCQBackingBean.quesNum].questionString}" />
+            	
+            	<br/>
+            		<!--  <ui:repeat varStatus="loop" value="#{AnswerMCQBackingBean.quesList[AnswerMCQBackingBean.quesNum].option}">
+    					<div>
+    						 <h:outputText value = "#{AnswerMCQBackingBean.quesList[AnswerMCQBackingBean.quesNum].option[loop.index]}"/>
+    					</div>
+					</ui:repeat>-->
+					<h:selectManyCheckbox value="#{AnswerMCQBackingBean.quesList[AnswerMCQBackingBean.quesNum].userAnswer}" layout="pageDirection">
+   						<f:selectItems value="#{AnswerMCQBackingBean.quesList[AnswerMCQBackingBean.quesNum].option}" var="ans"
+        					itemValue="#{ans}"
+        					itemLabel="#{ans}"  />
+   					</h:selectManyCheckbox>
+   					<h:outputText value ="#{AnswerMCQBackingBean.quesList[AnswerMCQBackingBean.quesNum].message}" />
+   					<h:commandButton value="Submit" actionListener="#{AnswerMCQBackingBean.markQuestion}"/>
+            	</h:panelGrid>
+            </ace:panel>
+            <div style="float: right">
+				<h:outputText value ="#{AnswerMCQBackingBean.currentQuesNum.concat(' out of '.concat(AnswerMCQBackingBean.totalQuesNum))}" />
+	         	<br/>
+	         	<h:outputText value ="#{AnswerMCQBackingBean.numOfCorrectAnswers.concat(' correct')}" />
+            </div>
+            <h:commandButton value="Previous" actionListener="#{AnswerMCQBackingBean.previousQues}"/>
+            <h:commandButton value="Next" actionListener="#{AnswerMCQBackingBean.nextQues}"/>
+        </h:form>
+    </h:body>
+</html>

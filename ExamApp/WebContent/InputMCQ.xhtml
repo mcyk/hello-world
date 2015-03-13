@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:icecore="http://www.icefaces.org/icefaces/core"
+        xmlns:ace="http://www.icefaces.org/icefaces/components"
+        xmlns:ice="http://www.icesoft.com/icefaces/component"
+    >
+    <h:head>
+        <title>InputMCQ</title>
+        <ice:outputStyle href="./xmlhttp/css/rime/rime.css" />
+    </h:head>
+    <h:body>
+        <h:form id="textAreaEntryForm">
+            
+           	 <ace:panel id="inputPanel">
+                <h:panelGrid id="inputGrid" columns="1" width="100%" >
+                <table>
+           		<tr>
+           			<td><h:outputLabel value = "OptNum"/></td><td><ace:textAreaEntry  value="#{InputMCQBackingBean.numOptions}" /></td><td></td>
+           		</tr>
+           		<tr>
+           			<td><h:outputLabel value = "OptAns"/></td><td><ace:textAreaEntry  value="#{InputMCQBackingBean.numAns}" /></td><td></td>
+           		</tr>
+           		<tr>
+           			<td></td><td></td><td><ice:commandButton value="ReInit" actionListener="#{InputMCQBackingBean.reInit}"/></td>
+           		</tr>
+           		<tr>
+           			<td><h:outputLabel value = "Topic"/></td><td><ace:textAreaEntry  value="#{InputMCQBackingBean.topic}" /></td><td></td>
+           		</tr>
+           		<tr>
+           			<td><h:outputLabel value = "Question"/></td><td><ace:textAreaEntry  value="#{InputMCQBackingBean.question}" /></td><td></td>
+           		</tr>
+           	</table>
+                  <ui:repeat varStatus="loop" value="#{InputMCQBackingBean.opt}">
+    					<h:outputLabel value="option #{loop.index}"/><ace:textAreaEntry value="#{InputMCQBackingBean.opt[loop.index]}" />
+					</ui:repeat>
+
+           			<ui:repeat varStatus="loop" value="#{InputMCQBackingBean.ans}">
+    					<h:outputLabel value="answer #{loop.index}"/><ace:textAreaEntry value="#{InputMCQBackingBean.ans[loop.index]}" />
+					</ui:repeat>
+                </h:panelGrid>
+            </ace:panel>
+           			
+            <ice:commandButton value="Submit" actionListener="#{InputMCQBackingBean.saveQuestion}"/>
+        </h:form>
+    </h:body>
+</html>
